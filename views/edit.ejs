@@ -1,0 +1,60 @@
+<%- include("partials/header") %>
+
+<main>
+    <a href="/detail/<%= motorcycle.id %>">Terug naar detail</a>
+
+    <h1 class="pagina-titel">Bewerk <%= motorcycle.name %></h1>
+
+    <form action="/edit/<%= motorcycle.id %>" method="post" class="edit-form">
+        
+        <div>
+            <label for="name">Naam:</label>
+            <input 
+                type="text" 
+                id="name" 
+                name="name" 
+                value="<%= motorcycle.name %>" 
+                required>
+        </div>
+
+        <div>
+            <label for="description">Beschrijving:</label>
+            <textarea 
+                id="description" 
+                name="description" 
+                required><%= motorcycle.description %></textarea>
+        </div>
+
+        <div>
+            <label for="engineCapacity">Motorinhoud (cc):</label>
+            <input 
+                type="number" 
+                id="engineCapacity" 
+                name="engineCapacity" 
+                value="<%= motorcycle.engineCapacity %>" 
+                required>
+        </div>
+
+        <div>
+            <label for="category">Categorie:</label>
+            <select id="category" name="category">
+                <option value="Naked" <%= motorcycle.category === "Naked" ? "selected" : "" %>>Naked</option>
+                <option value="Sport" <%= motorcycle.category === "Sport" ? "selected" : "" %>>Sport</option>
+                <option value="Adventure" <%= motorcycle.category === "Adventure" ? "selected" : "" %>>Adventure</option>
+                <option value="Cruiser" <%= motorcycle.category === "Cruiser" ? "selected" : "" %>>Cruiser</option>
+            </select>
+        </div>
+
+        <div>
+            <label for="isAvailable">Beschikbaar:</label>
+            <select id="isAvailable" name="isAvailable">
+                <option value="true" <%= motorcycle.isAvailable ? "selected" : "" %>>Ja</option>
+                <option value="false" <%= !motorcycle.isAvailable ? "selected" : "" %>>Nee</option>
+            </select>
+        </div>
+
+        <button type="submit">Opslaan</button>
+    </form>
+</main>
+
+<%- include("partials/footer") %>

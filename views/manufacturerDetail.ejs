@@ -1,0 +1,46 @@
+<%- include("partials/header") %>
+
+<main>
+    <a href="/manufacturers">Terug naar fabrikanten</a>
+
+    <h1><%= manufacturer.name %></h1>
+
+    <% if (manufacturer.logoUrl) { %>
+        <img src="<%= manufacturer.logoUrl %>" alt="Logo <%= manufacturer.name %>">
+    <% } %>
+
+    <h2>Info</h2>
+    <p><strong>Land:</strong> <%= manufacturer.country %></p>
+    <p><strong>Opgericht:</strong> <%= manufacturer.foundedYear %></p>
+    <p><strong>Actief:</strong> <%= manufacturer.isActive ? "Ja" : "Nee" %></p>
+
+    <h2>Motoren van <%= manufacturer.name %></h2>
+    <% if (motorcycles.length === 0) { %>
+        <p>Geen motoren gevonden voor deze fabrikant.</p>
+    <% } else { %>
+        <table>
+            <thead>
+                <tr>
+                    <th>Naam</th>
+                    <th>Categorie</th>
+                    <th>Motorinhoud</th>
+                    <th>Beschikbaar</th>
+                    <th>Detail</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% for (let moto of motorcycles) { %>
+                    <tr>
+                        <td><%= moto.name %></td>
+                        <td><%= moto.category %></td>
+                        <td><%= moto.engineCapacity %>cc</td>
+                        <td><%= moto.isAvailable ? "Ja" : "Nee" %></td>
+                        <td><a href="/detail/<%= moto.id %>">Bekijk</a></td>
+                    </tr>
+                <% } %>
+            </tbody>
+        </table>
+    <% } %>
+</main>
+
+<%- include("partials/footer") %>

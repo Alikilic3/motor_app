@@ -1,0 +1,68 @@
+<%- include("partials/header") %>
+
+<main>
+    <a href="/" class="back-link">Terug naar overzicht</a>
+    <br><br>
+    <% if (locals.user && locals.user.role === "ADMIN") { %>
+    <a href="/edit/<%= motorcycle.id %>" class="edit-btn">Bewerk dit artikel</a>
+<% } %>
+
+    <div class="motor-detail">
+        <div class="motor-afbeelding">
+            <img src="<%= motorcycle.imageUrl %>" alt="<%= motorcycle.name %>">
+        </div>
+
+        <div class="motor-info">
+            <h1><%= motorcycle.name %></h1>
+            <p class="beschrijving"><%= motorcycle.description %></p>
+
+            <table class="info-tabel">
+                <tr>
+                    <td><strong>Categorie</strong></td>
+                    <td><%= motorcycle.category %></td>
+                </tr>
+                <tr>
+                    <td><strong>Motorinhoud</strong></td>
+                    <td><%= motorcycle.engineCapacity %>cc</td>
+                </tr>
+                <tr>
+                    <td><strong>Beschikbaar</strong></td>
+                    <td><%= motorcycle.isAvailable ? "Ja" : "Nee" %></td>
+                </tr>
+                <tr>
+                    <td><strong>Releasedatum</strong></td>
+                    <td><%= motorcycle.releaseDate %></td>
+                </tr>
+            </table>
+
+            <h2>Features</h2>
+            <div class="features">
+                <% for (let feature of motorcycle.features) { %>
+                    <span class="feature-tag"><%= feature %></span>
+                <% } %>
+            </div>
+        </div>
+    </div>
+
+    <div class="fabrikant-sectie">
+        <h2>Fabrikant</h2>
+        <div class="fabrikant-info">
+            <% if (motorcycle.manufacturer.logoUrl) { %>
+                <img src="<%= motorcycle.manufacturer.logoUrl %>" 
+                     alt="Logo <%= motorcycle.manufacturer.name %>"
+                     class="fabrikant-logo">
+            <% } %>
+            <div>
+                <p><strong>Naam:</strong> <%= motorcycle.manufacturer.name %></p>
+                <p><strong>Land:</strong> <%= motorcycle.manufacturer.country %></p>
+                <p><strong>Opgericht:</strong> <%= motorcycle.manufacturer.foundedYear %></p>
+                <p><strong>Actief:</strong> <%= motorcycle.manufacturer.isActive ? "Ja" : "Nee" %></p>
+                <a href="/manufacturers/<%= motorcycle.manufacturer.id %>">
+                    Meer over <%= motorcycle.manufacturer.name %> →
+                </a>
+            </div>
+        </div>
+    </div>
+</main>
+
+<%- include("partials/footer") %>

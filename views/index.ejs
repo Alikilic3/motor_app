@@ -1,0 +1,56 @@
+<%- include("partials/header") %>
+
+<main>
+    <h1>Alle Motoren</h1>
+
+    <form action="/" method="get" class="search-form">
+        <input 
+            type="text" 
+            name="search" 
+            placeholder="Zoek een motor..." 
+            value="<%= search %>">
+        <select name="sortField">
+            <option value="name" <%= sortField === "name" ? "selected" : "" %>>Naam</option>
+            <option value="engineCapacity" <%= sortField === "engineCapacity" ? "selected" : "" %>>CC</option>
+            <option value="category" <%= sortField === "category" ? "selected" : "" %>>Type</option>
+        </select>
+        <select name="sortDirection">
+            <option value="asc" <%= sortDirection === "asc" ? "selected" : "" %>>Oplopend</option>
+            <option value="desc" <%= sortDirection === "desc" ? "selected" : "" %>>Aflopend</option>
+        </select>
+        <button type="submit">Zoek & Sorteer</button>
+    </form>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Foto</th>
+                <th>Naam</th>
+                <th>Type</th>
+                <th>CC</th>
+                <th>Beschikbaar</th>
+                <th>Fabrikant</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            <% for (let moto of motorcycles) { %>
+                <tr>
+                    <td>
+                        <img src="<%= moto.imageUrl %>" 
+                             alt="<%= moto.name %>"
+                             style="width: 80px; height: 50px; object-fit: cover;">
+                    </td>
+                    <td><%= moto.name %></td>
+                    <td><%= moto.category %></td>
+                    <td><%= moto.engineCapacity %>cc</td>
+                    <td><%= moto.isAvailable ? "Ja" : "Nee" %></td>
+                    <td><%= moto.manufacturer.name %></td>
+                    <td><a href="/detail/<%= moto.id %>">Bekijk</a></td>
+                </tr>
+            <% } %>
+        </tbody>
+    </table>
+</main>
+
+<%- include("partials/footer") %>

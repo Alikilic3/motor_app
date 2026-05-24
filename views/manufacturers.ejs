@@ -1,0 +1,38 @@
+<%- include("partials/header") %>
+
+<main>
+    <h1>Alle Fabrikanten</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Logo</th>
+                <th>Naam</th>
+                <th>Land</th>
+                <th>Opgericht</th>
+                <th>Actief</th>
+                <th>Detail</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% for (let manufacturer of manufacturers) { %>
+                <tr>
+                    <td>
+                        <% if (manufacturer.logoUrl) { %>
+                            <img src="<%= manufacturer.logoUrl %>" alt="Logo <%= manufacturer.name %>" width="50">
+                        <% } else { %>
+                            <span>Geen logo</span>
+                        <% } %>
+                    </td>
+                    <td><%= manufacturer.name %></td>
+                    <td><%= manufacturer.country %></td>
+                    <td><%= manufacturer.foundedYear %></td>
+                    <td><%= manufacturer.isActive ? "Ja" : "Nee" %></td>
+                    <td><a href="/manufacturers/<%= manufacturer.id %>">Bekijk</a></td>
+                </tr>
+            <% } %>
+        </tbody>
+    </table>
+</main>
+
+<%- include("partials/footer") %>

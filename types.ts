@@ -1,3 +1,5 @@
+import { ObjectId } from "mongodb";
+
 export interface Manufacturer {
   id: string;
   name: string;
@@ -18,4 +20,11 @@ export interface Motorcycle {
   category: "Naked" | "Sport" | "Adventure" | "Cruiser";
   features: string[];
   manufacturer: Manufacturer;
+}
+
+export interface User {
+  _id?: ObjectId;
+  email: string;
+  password?: string;
+  role: "ADMIN" | "USER";
 }
