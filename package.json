@@ -1,0 +1,27 @@
+{
+  "name": "motor_app",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon index.ts",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "devDependencies": {
+    "@types/ejs": "^3.1.5",
+    "@types/express": "^5.0.6",
+    "@types/node": "^25.9.1",
+    "@types/readline-sync": "^1.4.8",
+    "nodemon": "^3.1.14",
+    "ts-node": "^10.9.2"
+  },
+  "dependencies": {
+    "ejs": "^5.0.2",
+    "express": "^5.2.1",
+    "readline-sync": "^1.4.10"
+  }
+}
